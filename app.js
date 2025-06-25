@@ -75,7 +75,7 @@ app.post('/submit', async (req, res) => {
     await newUser.save();
 
     // Send a success response
-    res.status(201).send('Form submitted successfully!');
+       res.redirect('/');
   } catch (err) {
     console.error('Error saving user:', err);
     res.status(500).send('Internal server error.');
@@ -96,7 +96,7 @@ app.post('/submitEmail', async (req, res) => {
     // Save the user to MongoDB
     await newSub.save();
     // Send a success response
-    res.status(201).send('Form submitted successfully!');
+    res.redirect('/');
   } catch (err) {
     console.error('Error saving user:', err);
     res.status(500).send('Internal server error.');
@@ -121,7 +121,7 @@ app.post('/projects',upload.single('image'), async (req, res) => {
     await newProject.save();
 
     // Send a success response
-    res.status(201).send('Form submitted successfully!');
+   res.redirect('/admin');
   } catch (err) {
     console.error('Error saving user:', err);
     res.status(500).send('Internal server error.');
@@ -147,7 +147,7 @@ app.post('/clients',upload.single('cimage'), async (req, res) => {
     await newClient.save();
 
     // Send a success response
-    res.status(201).send('Form submitted successfully!');
+    res.redirect('/admin');
   } catch (err) {
     console.error('Error saving user:', err);
     res.status(500).send('Internal server error.');
@@ -164,7 +164,7 @@ app.get('/admin',async (req, res) => {
     try {
     const users =await User.find();
     const NewesLetter = await NewsletterSubscription.find();
-      res.render('admin', { users,NewesLetter });
+      res.render('Admin', { users,NewesLetter });
   } catch (error) {
     console.error('Error rendering index page:', error);
     res.status(500).send("failed to fetch data");
