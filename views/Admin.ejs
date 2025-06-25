@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Panel</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex bg-gray-100 min-h-screen">
+
+  <!-- Sidebar -->
+  <aside class="w-64 bg-gray-900 text-white min-h-screen p-6">
+    <h2 class="text-2xl font-bold mb-10">Admin Panel</h2>
+    <nav class="space-y-4">
+      <a href="#contacts" class="block hover:text-blue-400">Contact Requests</a>
+      <a href="#subscribers" class="block hover:text-blue-400">Newsletter Subscribers</a>
+      <a href="#projects" class="block hover:text-blue-400">Add New Project</a>
+      <a href="#clients" class="block hover:text-blue-400">Add Client Info</a>
+    </nav>
+  </aside>
+
+  <!-- Main Panel -->
+  <main class="flex-1 p-10 space-y-12">
+
+    <!-- Contact Requests -->
+    <section id="contacts">
+      <h2 class="text-2xl font-semibold mb-4">Contact Us Submissions</h2>
+     
+      <div class="overflow-auto bg-white shadow rounded-lg">
+        <table class="min-w-full table-auto text-left">
+          <thead>
+            <tr class="bg-gray-100 text-gray-600">
+              <th class="px-6 py-3">Name</th>
+              <th class="px-6 py-3">Email</th>
+              <th class="px-6 py-3">Phone</th>
+              <th class="px-6 py-3">City</th>
+            </tr>
+          </thead>
+          <tbody>
+             <% users.forEach(e => {  %>
+            <tr class="border-t">
+              <td class="px-6 py-4"><%= e.name %></td>
+              <td class="px-6 py-4"><%= e.email %></td>
+              <td class="px-6 py-4"><%= e.phone %></td>
+              <td class="px-6 py-4"><%= e.city %></td>
+            </tr>
+             <%    }); %>
+          </tbody>
+        </table>
+      </div>
+  
+    </section>
+
+    <!-- Newsletter Subscribers -->
+    <section id="subscribers">
+      <h2 class="text-2xl font-semibold mb-4">Newsletter Subscribers</h2>
+      <div class="overflow-auto bg-white shadow rounded-lg">
+        <table class="min-w-full table-auto text-left">
+          <thead>
+            <tr class="bg-gray-100 text-gray-600">
+              <th class="px-6 py-3">Email</th>
+            </tr>
+          </thead>
+          
+          <tbody>
+            <% NewesLetter.forEach(element => {   %>
+            <tr class="border-t">
+              <td class="px-6 py-4"><%= element.email %></td>
+            </tr>
+              <%    }); %>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Add New Project -->
+    <section id="projects">
+      <h2 class="text-2xl font-semibold mb-4">Add New Project</h2>
+       <form method="POST" action="/projects" class="bg-white p-6 rounded-lg shadow space-y-4" id="projectForm" enctype="multipart/form-data">
+    
+         <div>
+          <label class="block mb-1 font-medium">Image </label>
+          <input class="w-full border px-4 py-2 rounded" type="text" id="name" name="name" required ></div>
+        <div>
+          <label class="block mb-1 font-medium">Project Title</label>
+          <input class="w-full border px-4 py-2 rounded" type="text" id="description" name="description" required >
+        </div>
+        <div>
+          <label class="block mb-1 font-medium">Description</label>
+          <input class="w-full border px-4 py-2 rounded" type="file" id="image" name="image" required > </div>
+       
+        <button class="bg-blue-500 text-white px-6 py-2 rounded" type="submit" class="bg-blue-500 text-white px-6 py-2 rounded">Create Project</button>
+      </form>
+    </section>
+
+    <!-- Add Client Info -->
+    <section id="clients">
+      <h2 class="text-2xl font-semibold mb-4">Add Client Testimonial</h2>
+     <form method="POST" action="/clients" class="bg-white p-6 rounded-lg shadow space-y-4" id="ClientForm" enctype="multipart/form-data">
+        
+    <label  class="block mb-1 font-medium" for="cname">Client Name</label>
+    <input  class="w-full border px-4 py-2 rounded" type="text" id="cname" name="cname" required >
+
+    <label  class="block mb-1 font-medium" for="cdescription"> description</label>
+    <input class="w-full border px-4 py-2 rounded" type="text" id="cdescription" name="cdescription" required >
+    
+    <label  class="block mb-1 font-medium" for="designation"> description</label>
+    <input class="w-full border px-4 py-2 rounded"  type="text" id="designation" name="designation" required >
+
+    <label  class="block mb-1 font-medium" for="cimage">Client Image</label>
+    <input class="w-full border px-4 py-2 rounded" type="file" id="cimage" name="cimage" required >
+    
+    
+    <button class="bg-blue-500 text-white px-6 py-2 rounded" type="submit" form="ClientForm">Submit</button>
+    </form>
+    </section>
+
+  </main>
+</body>
+</html>

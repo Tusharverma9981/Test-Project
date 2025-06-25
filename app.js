@@ -43,18 +43,30 @@ const upload = multer({ storage: storage });
 
 
 // Middleware to handle basic route
-app.get('/', (req, res) => {
-  res.render('index')
+app.get('/',async (req, res) => {
+ try {
+    const projects = await Project.find();
+    const clients =await  Client.find();
+      res.render('index', { projects,clients });
+  } catch (error) {
+    console.error('Error rendering index page:', error);
+    res.status(500).send("failed to fetch data");
+    
+  }
 });
 
 app.post('/submit', async (req, res) => {
-  const { name, email, phone, city } = req.body;
+  //console.log(req.body);
+  
+  const { username, userEmail, phone, city } = req.body;
+  // res.send('Form submitted successfully!');
+   console.log('Form submitted:', username, userEmail, phone, city);
 
   try {
     // Create a new user document
     const newUser = new User({
-      name,
-      email,
+      name:username,
+      email:userEmail,
       phone,
       city
     });
@@ -71,6 +83,8 @@ app.post('/submit', async (req, res) => {
 });
 
 app.post('/submitEmail', async (req, res) => {
+  //console.log(req.body);
+  
   const {email} = req.body;
   //console.log('Email received:', email);
   
@@ -140,11 +154,21 @@ app.post('/clients',upload.single('cimage'), async (req, res) => {
   }
 });
 
+
 // Start the server
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
 });
 
-app.get('/admin', (req, res) => {
-    res.render('AdminPanal');
+app.get('/admin',async (req, res) => {
+    try {
+    const users =await User.find();
+    const NewesLetter = await NewsletterSubscription.find();
+      res.render('admin', { users,NewesLetter });
+  } catch (error) {
+    console.error('Error rendering index page:', error);
+    res.status(500).send("failed to fetch data");
+    
+  }
+
 });

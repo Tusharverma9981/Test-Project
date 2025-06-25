@@ -4,28 +4,139 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
-  
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
 </head>
 <body>
-    <nav class="navbar bg-body-tertiary">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-            <img src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
-            Bootstrap
-            </a>
+     <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Real Estate Landing Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Poppins', sans-serif;
+      }
+    </style>
+  </head>
+  <body class="bg-white text-gray-800">
+    <!-- Header -->
+    <header class="relative h-screen bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c');">
+              <nav class="bg-gray-800 text-white px-6 py-4 flex items-center justify-between">
+            <!-- Left Side: Logo -->
+            <div class="text-2xl font-bold tracking-wide">
+              Real<span class="text-orange-400">Hub</span>
+            </div>
+
+            <!-- Right Side: Navigation Links -->
+            <div class="flex items-center space-x-6">
+              <a href="#contact" class="hover:text-orange-400">Contact Us</a>
+              <a href="#about" class="hover:text-orange-400">About Us</a>
+              <a href="/admin" class="bg-blue-600 px-4 py-2 rounded hover:bg-blue-700 transition">
+                Switch to Admin
+              </a>
+            </div>
+          </nav>
+
+              <div class="absolute top-1/3 left-10 right-10 max-w-6xl mx-auto text-white flex flex-col md:flex-row items-start justify-between gap-8">
+          <!-- Heading on the Left -->
+          <div class="flex-1 mr-10">
+            <h1 class="text-7xl font-bold">Consultation, Design & Marketing</h1>
+          </div>
+
+  <!-- Form on the Right -->
+          <div class="bg-white text-black p-6 rounded shadow-md space-y-3 w-full md:w-96">
+            <form method="POST" action="/submit">
+            <input name="username" type="text" placeholder="Enter your name" class="w-full border px-4 py-2 rounded" />
+            <input name="userEmail" type="email" placeholder="Enter your email" class="w-full border px-4 py-2 rounded" />
+            <input name="phone" type="number" placeholder="Enter your phone number" class="w-full border px-4 py-2 rounded" />
+            <input name="city" type="text" placeholder="City" class="w-full border px-4 py-2 rounded" />
+            <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded w-full">Get a Quote</button>
+              </form>
+          </div>
         </div>
-    </nav>
-    <%- include('HeroSection') %>
-    <%- include('catlogSection') %>
-    <%- include('WhyChooseUs') %>
-    <%- include('catalog2section') %>
-    <%- include('About') %>
-    <%- include('Projects') %>
-    <%- include('Clients') %>
-    <%- include('LearnMore') %>
-    <%- include('Newesletter') %>
-    <%- include('footer') %>
+
+    </header>
+
+    <!-- Services -->
+    <section class="py-20 text-center">
+      <h2 class="text-3xl font-semibold mb-8">Not Your Average Realtor</h2>
+      <div class="flex flex-wrap justify-center gap-8">
+        <div class="bg-gray-100 p-6 rounded-lg shadow w-64">Personalized Service</div>
+        <div class="bg-gray-100 p-6 rounded-lg shadow w-64">Design Expertise</div>
+        <div class="bg-gray-100 p-6 rounded-lg shadow w-64">Strategic Marketing</div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section class="py-20 text-center bg-gray-50">
+      <h2 class="text-3xl font-semibold mb-4">About Us</h2>
+      <p class="max-w-2xl mx-auto">We bring years of experience to deliver quality real estate services tailored to your needs. Our mission is to deliver client satisfaction through expertise and trust.</p>
+    </section>
+
+    <!-- Projects -->
+    <section class="py-20 text-center">
+      <h2 class="text-3xl font-semibold mb-8">Our Projects</h2>
+      <div class="flex flex-wrap justify-center gap-8">
+        
+        <% projects.forEach(element => {   %>
+        <div class="bg-white border rounded-lg shadow-lg w-64">
+          <img src="<%= element.image  %>" class="rounded-t-lg" />
+          <div class="p-4">
+            <h3 class="font-semibold"><%= element.name  %></h3>
+            <p><%= element.description  %></p>
+          </div>
+        </div>
+         <%    }); %>
+      </div>
+    </section>
+
+    <!-- Clients -->
+    <section class="py-20 text-center bg-gray-50">
+      <h2 class="text-3xl font-semibold mb-8">Happy Clients</h2>
+      <div class="flex flex-wrap justify-center gap-8">
+         <% clients.forEach(element => {   %>
+        <div class="bg-white p-6 rounded-lg shadow w-64"><%= element.cname  %></div>
+        <%    }); %>
+       </div>
+       
+    </section>
+
+    <!-- Newsletter -->
+    <section class="bg-blue-50 py-20 text-center">
+      <h2 class="text-3xl font-semibold mb-4">Subscribe to our Newsletter</h2>
+      <p class="mb-6 text-gray-600">Get the latest updates on listings, market trends, and more.</p>
+      <form action="/submitEmail" method="POST" class="flex flex-col sm:flex-row justify-center items-center gap-4 max-w-xl mx-auto">
+        <input name="email" type="email" placeholder="Enter your email" class="px-4 py-2 rounded border w-full sm:w-2/3" />
+        <button class="bg-blue-600 text-white px-6 py-2 rounded w-full sm:w-auto">Subscribe</button>
+      </form>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="bg-gray-800 text-white text-center py-20">
+      <h2 class="text-3xl font-semibold mb-4">Let’s work on your dream project together</h2>
+      <button class="mt-6 bg-blue-600 px-6 py-3 rounded">Schedule a Call</button>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-10 text-center">
+      <p>&copy; 2025 RealHub. All rights reserved.</p>
+      <div class="mt-4 space-x-6">
+        <a href="#" class="hover:underline">Privacy</a>
+        <a href="#" class="hover:underline">Terms</a>
+        <a href="#" class="hover:underline">Support</a>
+      </div>
+    </footer>
+  </body>
+</html>
+
+  
+
+    
 
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
  
