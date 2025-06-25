@@ -13,7 +13,6 @@ const port = 3000;
 
 //Database connection
 const mongoose = require('mongoose');
-const { log } = require('console');
 require('dotenv').config();
 
 // Middleware to set view engine
