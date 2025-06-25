@@ -100,15 +100,21 @@
       <h2 class="text-3xl font-semibold mb-8">Happy Clients</h2>
       <div class="flex flex-wrap justify-center gap-8">
          <% clients.forEach(element => {   %>
-       <div class="bg-white border rounded-lg shadow-lg w-64">
-          <img src="<%= element.image  %>" class="rounded-t-lg" />
-          <div class="p-4">
-            <h3 class="font-semibold"><%= element.cname  %></h3>
-            <h3 class="font-semibold"><%= element.cdescription  %></h3>
-            <h3 class="font-semibold"><%= element.designation  %></h3>
-            <p><%= element.description  %></p>
-          </div>
-        </div><%    }); %>
+                  <div class="max-w-sm bg-white rounded-2xl shadow-lg p-6 text-center space-y-4">
+              <img 
+                src="<%= element.cimage  %>" 
+                alt="Client Image" 
+                class="w-24 h-24 rounded-full mx-auto shadow-md"
+              />
+              <div>
+                <h3 class="text-xl font-semibold text-gray-800"><%= element.cname  %></h3>
+                <p class="text-sm text-gray-500"><%= element.designation  %></p>
+              </div>
+              <p class="text-gray-600 text-sm">
+               <%= element.cdescription  %></p>
+            </div>
+
+        <%    }); %>
        </div>
        
     </section>
